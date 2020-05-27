@@ -27,12 +27,25 @@ public class CashDeskTest {
         desk = new CashDeskSimpleImp();
     }
 
-
     @Test
     public void getSimpleReceiptTest(){
         desk.addProduct("2 book at 12.49");
-        assertThat(desk.getReceipt()).isEqualTo("2 book: 24.98");
+        assertThat(desk.getReceipt()).isEqualTo(
+                "2 book: 24.98" + '\n' +
+                "Total: 24.98"
+        );
     }
 
-
+  @Test
+    public void getSimpleReceiptMassiveTest() {
+      desk.addProduct("2 book at 12.49");
+      desk.addProduct("1 chocolate bar at 0.85");
+      desk.addProduct("3 imported box of chocolates at 10.00");
+      assertThat(desk.getReceipt()).isEqualTo(
+        "2 book: 24.98" + '\n' +
+        "1 chocolate bar: 0.85" + '\n' +
+        "3 imported box of chocolates: 30.0"+ '\n' +
+        "Total: 55.83"
+      );
+  }
 }
