@@ -1,8 +1,13 @@
 package sale.taxes.problem;
 
 
+import javafx.beans.binding.BooleanExpression;
 import org.junit.Before;
+import org.junit.Test;
 import sale.taxes.problem.CashDesk;
+
+import static org.assertj.core.api.Assertions.*;
+
 
 public class CashDeskTest {
 
@@ -22,4 +27,13 @@ public class CashDeskTest {
             }
         };
     }
+
+
+    @Test
+    public void getSimpleReceiptTest(){
+        desk.addProduct("2 book at 12.49");
+        assertThat(desk.getReceipt()).isEqualTo("2 book: 24.98");
+    }
+
+
 }
