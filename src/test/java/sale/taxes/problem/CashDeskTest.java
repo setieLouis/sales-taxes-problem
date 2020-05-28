@@ -1,15 +1,10 @@
 package sale.taxes.problem;
 
-
-import javafx.beans.binding.BooleanExpression;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
-import sale.taxes.problem.CashDesk;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
