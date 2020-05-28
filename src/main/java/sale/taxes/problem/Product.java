@@ -9,13 +9,16 @@ public class Product {
     private final String product;
     private final double price;
     private final double cost;
+    private final double tax;
 
     @Builder
-    Product(int quantity, String product , double price){
+    Product(int quantity, String product , double price, double tax){
         this.quantity = quantity;
         this.product = product;
         this.price = price;
-        this.cost = price * quantity;
+        this.tax = (tax/100) *  price * quantity;
+        this.cost = price * quantity + this.tax;
+
     }
 
     public String toString(){

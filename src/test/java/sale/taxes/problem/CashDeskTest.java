@@ -32,6 +32,7 @@ public class CashDeskTest {
         desk.addProduct("2 book at 12.49");
         assertThat(desk.getReceipt()).isEqualTo(
                 "2 book: 24.98" + '\n' +
+                "Sales Taxes: 0.0" + '\n' +
                 "Total: 24.98"
         );
     }
@@ -45,16 +46,17 @@ public class CashDeskTest {
         "2 book: 24.98" + '\n' +
         "1 chocolate bar: 0.85" + '\n' +
         "3 imported box of chocolates: 30.0"+ '\n' +
+        "Sales Taxes: 0.0" + '\n' +
         "Total: 55.83"
       );
   }
     @Test
     public void basicTaxTest() {
         desk.addProduct("1 music CD at 14.99");
-
         assertThat(desk.getReceipt()).isEqualTo(
-            "1 music CD: 16.49" + '\n' +
-            "Total: 16.49"
+            "1 music CD: 16.489" + '\n' +
+            "Sales Taxes: 1.499" + '\n' +
+            "Total: 16.489"
         );
     }
 
