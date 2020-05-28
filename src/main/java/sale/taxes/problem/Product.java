@@ -12,11 +12,12 @@ public class Product {
     private final double tax;
 
     @Builder
-    Product(int quantity, String product , double price, double tax){
+    Product(int quantity, String product , double price, int tax){
         this.quantity = quantity;
         this.product = product;
         this.price = price;
-        this.tax = (tax/100) *  price * quantity;
+        int tmpTax = (int) (tax *  price * quantity);
+        this.tax =  (double)  tmpTax / 100;
         this.cost = price * quantity + this.tax;
 
     }

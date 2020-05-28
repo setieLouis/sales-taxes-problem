@@ -23,7 +23,7 @@ public class CashDeskSimpleImp implements  CashDesk{
         String quantity =  element.substring(0,2).trim();
         String product =  element.substring(2, atIndex );
         String price =  element.substring(atIndex + 3).trim();
-        double basicTax = getBasicTax(product);
+        int basicTax = getBasicTax(product);
 
         bucket.add(
                 Product.builder()
@@ -35,11 +35,11 @@ public class CashDeskSimpleImp implements  CashDesk{
         );
     }
 
-    private double getBasicTax(String product) {
-        double tax = 10.0;
+    private int getBasicTax(String product) {
+        int tax = 10;
         for(String s : this.freeBasicTaxGoods){
             if (product.contains(s)){
-                tax = 0.0;
+                tax = 0;
                 break;
             }
         }

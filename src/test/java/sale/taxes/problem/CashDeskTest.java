@@ -54,9 +54,9 @@ public class CashDeskTest {
     public void basicTaxTest() {
         desk.addProduct("1 music CD at 14.99");
         assertThat(desk.getReceipt()).isEqualTo(
-            "1 music CD: 16.489" + '\n' +
-            "Sales Taxes: 1.499" + '\n' +
-            "Total: 16.489"
+            "1 music CD: 16.48" + '\n' +
+            "Sales Taxes: 1.49" + '\n' +
+            "Total: 16.48"
         );
     }
 
