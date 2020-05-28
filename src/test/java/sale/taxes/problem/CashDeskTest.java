@@ -60,4 +60,24 @@ public class CashDeskTest {
         );
     }
 
+
+    @Test
+    public void importedTaxTest() {
+        desk.addProduct("1 imported bottle of perfume at 27.99");
+        desk.addProduct("1 bottle of perfume at 18.99");
+        desk.addProduct("1 packet of headache pills at 9.75");
+        desk.addProduct("3 box of imported chocolates at 11.25");
+
+        assertThat(desk.getReceipt()).isEqualTo(
+                "1 imported bottle of perfume: 32.19\n" +
+                "1 bottle of perfume: 20.89\n" +
+                "1 packet of headache pills: 9.75\n" +
+                "3 imported box of chocolates: 35.55\n" +
+                "Sales Taxes: 7.90\n" +
+                "Total: 98.38"
+        );
+    }
+
+
+
 }
