@@ -21,22 +21,30 @@ public class CashDeskSimpleImp implements  CashDesk{
     public void addProduct(String element) {
         int atIndex = element.indexOf(" at");
         String quantity =  element.substring(0,2).trim();
-        String product =  element.substring(2, atIndex );
+        String product =  getProduct(element.substring(2, atIndex ));
+
         String price =  element.substring(atIndex + 3).trim();
-        int basicTax = getBasicTax(product);
+        int tax = getTax(product);
 
         bucket.add(
                 Product.builder()
                         .quantity(Integer.parseInt(quantity))
                         .product(product)
                         .price(Double.parseDouble(price))
-                        .tax(basicTax)
+                        .tax(tax)
                         .build()
         );
     }
 
-    private int getBasicTax(String product) {
+    private String getProduct(String product) {
+        if(product.contains("imported "))
+            return "imported " +  product.replace("imported ", "");
+        return product;
+    }
+
+    private int getTax(String product) {
         int tax = 10;
+        // basic tax
         for(String s : this.freeBasicTaxGoods){
             if (product.contains(s)){
                 tax = 0;
@@ -44,6 +52,8 @@ public class CashDeskSimpleImp implements  CashDesk{
             }
         }
 
+        if (product.contains("imported"))
+            tax += 5;
         return tax;
     }
 
@@ -57,6 +67,8 @@ public class CashDeskSimpleImp implements  CashDesk{
             total += prod.getCost();
             tax += prod.getTax();
         }
+
+        total =  (double)((int)(total * 100))/100;
         builder.append("Sales Taxes: " + tax +'\n');
         builder.append("Total: " + total);
         return builder.toString();
